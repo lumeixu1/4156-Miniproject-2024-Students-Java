@@ -14,10 +14,10 @@ public class Course implements Serializable {
   /**
    * Constructs a new Course object with the given parameters. Initial count starts at 0.
    *
-   * @param instructorName     The name of the instructor teaching the course.
-   * @param courseLocation     The location where the course is held.
-   * @param timeSlot           The time slot of the course.
-   * @param capacity           The maximum number of students that can enroll in the course.
+   * @param instructorName The name of the instructor teaching the course.
+   * @param courseLocation The location where the course is held.
+   * @param timeSlot       The time slot of the course.
+   * @param capacity       The maximum number of students that can enroll in the course.
    */
   public Course(String instructorName, String courseLocation, String timeSlot, int capacity) {
     this.courseLocation = courseLocation;
@@ -33,7 +33,10 @@ public class Course implements Serializable {
    * @return true if the student is successfully enrolled, false otherwise.
    */
   public boolean enrollStudent() {
-    enrolledStudentCount++;
+    if (enrolledStudentCount < enrollmentCapacity) {
+      enrolledStudentCount++;
+      return true;
+    }
     return false;
   }
 
@@ -43,18 +46,21 @@ public class Course implements Serializable {
    * @return true if the student is successfully dropped, false otherwise.
    */
   public boolean dropStudent() {
-    enrolledStudentCount--;
+    if (enrolledStudentCount > 0) {
+      enrolledStudentCount--;
+      return true;
+    }
     return false;
   }
 
 
   public String getCourseLocation() {
-    return this.instructorName;
+    return this.courseLocation;
   }
 
 
   public String getInstructorName() {
-    return this.courseLocation;
+    return this.instructorName;
   }
 
 
@@ -64,8 +70,8 @@ public class Course implements Serializable {
 
 
   public String toString() {
-    return "\nInstructor: " + instructorName +  "; Location: "
-            + courseLocation +  "; Time: " + courseTimeSlot;
+    return "\nInstructor: " + instructorName + "; Location: "
+            + courseLocation + "; Time: " + courseTimeSlot;
   }
 
 
@@ -88,7 +94,11 @@ public class Course implements Serializable {
     this.enrolledStudentCount = count;
   }
 
-
+  /**
+   * Check if the course is full or not.
+   *
+   * @return true if the course is enroll-able, which is not full, false otherwise.
+   */
   public boolean isCourseFull() {
     return enrollmentCapacity > enrolledStudentCount;
   }
