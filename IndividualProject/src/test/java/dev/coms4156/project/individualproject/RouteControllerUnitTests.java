@@ -1,25 +1,24 @@
 package dev.coms4156.project.individualproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.times;
-
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import java.util.HashMap;
 
+/**
+ * This class contains all the unit tests for the controller class.
+ */
 public class RouteControllerUnitTests {
   private RouteController routeController;
   private MyFileDatabase myFileDatabase;
   private IndividualProjectApplication app;
 
+  /**
+   * Set up the app, controller and database objects for testing.
+   */
   @BeforeEach
   public void setUp() {
     app = new IndividualProjectApplication();
@@ -33,7 +32,9 @@ public class RouteControllerUnitTests {
   @Test
   public void testIndex() {
     String result = routeController.index();
-    assertEquals("Welcome, in order to make an API call direct your browser or Postman to an endpoint \n\n This can be done using the following format: \n\n http:127.0.0.1:8080/endpoint?arg=value", result);
+    assertEquals("Welcome, in order to make an API call direct your browser "
+            + "or Postman to an endpoint \n\n This can be done using the following format: "
+            + "\n\n http:127.0.0.1:8080/endpoint?arg=value", result);
   }
 
   @Test
@@ -58,7 +59,8 @@ public class RouteControllerUnitTests {
     ResponseEntity<?> response = routeController.retrieveCourse("CHEM", 1403);
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals("\nInstructor: Ruben M Savizky; Location: 309 HAV; Time: 6:10-7:25", response.getBody());
+    assertEquals("\nInstructor: Ruben M Savizky; Location: 309 HAV; Time: 6:10-7:25",
+            response.getBody());
   }
 
   @Test
@@ -329,7 +331,7 @@ public class RouteControllerUnitTests {
     String deptCode = "NONEXISTENT";
     int courseCode = 1001;
 
-    ResponseEntity<?> response = routeController.setEnrollmentCount(deptCode, courseCode,10);
+    ResponseEntity<?> response = routeController.setEnrollmentCount(deptCode, courseCode, 10);
 
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     assertEquals("Course Not Found", response.getBody());
@@ -342,7 +344,8 @@ public class RouteControllerUnitTests {
     Department department = app.myFileDatabase.getDepartmentMapping().get(deptCode);
     Course course = department.getCourseSelection().get(Integer.toString(courseCode));
 
-    ResponseEntity<?> response = routeController.changeCourseTime(deptCode, courseCode, "1:10-3:40");
+    ResponseEntity<?> response = routeController.changeCourseTime(deptCode,
+            courseCode, "1:10-3:40");
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals("Attributed was updated successfully.", response.getBody());
@@ -353,7 +356,8 @@ public class RouteControllerUnitTests {
   public void testChangeCourseTimeCourseNotFound() {
     String deptCode = "COMS";
     int courseCode = 9999;
-    ResponseEntity<?> response = routeController.changeCourseTime(deptCode, courseCode, "1:10-3:40");
+    ResponseEntity<?> response = routeController.changeCourseTime(deptCode,
+            courseCode, "1:10-3:40");
 
     // Then
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
@@ -365,7 +369,8 @@ public class RouteControllerUnitTests {
     String deptCode = "NONEXISTENT";
     int courseCode = 1001;
 
-    ResponseEntity<?> response = routeController.changeCourseTime(deptCode, courseCode, "1:10-3:40");
+    ResponseEntity<?> response = routeController.changeCourseTime(deptCode,
+            courseCode, "1:10-3:40");
 
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     assertEquals("Course Not Found", response.getBody());
@@ -378,7 +383,8 @@ public class RouteControllerUnitTests {
     Department department = app.myFileDatabase.getDepartmentMapping().get(deptCode);
     Course course = department.getCourseSelection().get(Integer.toString(courseCode));
 
-    ResponseEntity<?> response = routeController.changeCourseTeacher(deptCode, courseCode, "new teacher");
+    ResponseEntity<?> response = routeController.changeCourseTeacher(deptCode,
+            courseCode, "new teacher");
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals("Attributed was updated successfully.", response.getBody());
@@ -389,7 +395,8 @@ public class RouteControllerUnitTests {
   public void testChangeCourseTeacherCourseNotFound() {
     String deptCode = "COMS";
     int courseCode = 9999;
-    ResponseEntity<?> response = routeController.changeCourseTeacher(deptCode, courseCode, "new teacher");
+    ResponseEntity<?> response = routeController.changeCourseTeacher(deptCode,
+            courseCode, "new teacher");
 
     // Then
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
@@ -401,7 +408,8 @@ public class RouteControllerUnitTests {
     String deptCode = "NONEXISTENT";
     int courseCode = 1001;
 
-    ResponseEntity<?> response = routeController.changeCourseTeacher(deptCode, courseCode, "new teacher");
+    ResponseEntity<?> response = routeController.changeCourseTeacher(deptCode,
+            courseCode, "new teacher");
 
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     assertEquals("Course Not Found", response.getBody());
@@ -414,7 +422,8 @@ public class RouteControllerUnitTests {
     Department department = app.myFileDatabase.getDepartmentMapping().get(deptCode);
     Course course = department.getCourseSelection().get(Integer.toString(courseCode));
 
-    ResponseEntity<?> response = routeController.changeCourseLocation(deptCode, courseCode, "new location");
+    ResponseEntity<?> response = routeController.changeCourseLocation(deptCode,
+            courseCode, "new location");
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
     assertEquals("Attributed was updated successfully.", response.getBody());
@@ -425,7 +434,8 @@ public class RouteControllerUnitTests {
   public void testChangeCourseLocationCourseNotFound() {
     String deptCode = "COMS";
     int courseCode = 9999;
-    ResponseEntity<?> response = routeController.changeCourseLocation(deptCode, courseCode, "new location");
+    ResponseEntity<?> response = routeController.changeCourseLocation(deptCode,
+            courseCode, "new location");
 
     // Then
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
@@ -437,7 +447,8 @@ public class RouteControllerUnitTests {
     String deptCode = "NONEXISTENT";
     int courseCode = 1001;
 
-    ResponseEntity<?> response = routeController.changeCourseLocation(deptCode, courseCode, "new location");
+    ResponseEntity<?> response = routeController.changeCourseLocation(deptCode,
+            courseCode, "new location");
 
     assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     assertEquals("Course Not Found", response.getBody());
