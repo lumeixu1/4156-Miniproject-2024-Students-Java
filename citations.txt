@@ -1,0 +1,2 @@
+1. https://site.mockito.org/
+2. https://docs.pmd-code.org/latest/
