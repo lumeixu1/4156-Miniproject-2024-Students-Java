@@ -76,11 +76,13 @@ A. Course class:
 3. getInstructorName: return field was wrong, fixed.
 4. dropStudent: added check capacity to see if the student count is 0.
 5. isCourseFull: was implemented as "isCourseEnroll-able", changed the condition so that it represents full/not full
+6. constructor: initialize enrolledStudentCount to be 0.
 
 B. Department class:
 1. getNumberOfMajors: return value was negative, fixed.
 2. getDepartmentChair: return value was a string literal, fixed.
 3. toString: return value was a string literal, fixed.
+4. dropPersonFromMajor: added check numOfMajor to see if the count is 0.
 
 C. RouteController class:
 1. retrieveDepartment: status code was 200 when not found and code was 404 when found. Fixed.
@@ -88,3 +90,4 @@ C. RouteController class:
 3. getMajorCtFromDept: major number was negative, fixed.
 4. getMajorCtFromDept: status code was FORBIDDEN when not found, changed to 404.
 5. findCourseTime: response body was using string literal, changed to the actual time string.
+6. handleException: status code was OK, changed to BadRequest.

@@ -1,2 +1,5 @@
 1. https://site.mockito.org/
 2. https://docs.pmd-code.org/latest/
+3. https://google.github.io/styleguide/javaguide.html
+4. https://maven.apache.org/surefire/maven-surefire-plugin/examples/single-test.html
+5. https://www.geeksforgeeks.org/maven-build-phases-and-basic-maven-commands/
