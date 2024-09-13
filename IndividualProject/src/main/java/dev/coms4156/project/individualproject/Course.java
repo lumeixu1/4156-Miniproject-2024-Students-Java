@@ -24,7 +24,7 @@ public class Course implements Serializable {
     this.instructorName = instructorName;
     this.courseTimeSlot = timeSlot;
     this.enrollmentCapacity = capacity;
-    this.enrolledStudentCount = 500;
+    this.enrolledStudentCount = 0;
   }
 
   /**
@@ -68,7 +68,7 @@ public class Course implements Serializable {
     return this.courseTimeSlot;
   }
 
-
+  @Override
   public String toString() {
     return "\nInstructor: " + instructorName + "; Location: "
             + courseLocation + "; Time: " + courseTimeSlot;
@@ -97,10 +97,10 @@ public class Course implements Serializable {
   /**
    * Check if the course is full or not.
    *
-   * @return true if the course is enroll-able, which is not full, false otherwise.
+   * @return true if the course is full, false otherwise.
    */
   public boolean isCourseFull() {
-    return enrollmentCapacity > enrolledStudentCount;
+    return enrollmentCapacity <= enrolledStudentCount;
   }
 
   @Serial

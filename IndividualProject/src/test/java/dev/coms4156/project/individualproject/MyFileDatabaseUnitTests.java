@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,14 +40,14 @@ public class MyFileDatabaseUnitTests {
 
   @Test
   public void constructorTest() {
-    HashMap<String, Department> mapping = database.getDepartmentMapping();
+    Map<String, Department> mapping = database.getDepartmentMapping();
     assertNotNull(mapping);
     assertTrue(mapping.containsKey("CS"));
   }
 
   @Test
   public void deSerializeObjectFromFileTest() {
-    HashMap<String, Department> mapping = database.deSerializeObjectFromFile();
+    Map<String, Department> mapping = database.deSerializeObjectFromFile();
     assertNotNull(mapping);
     assertTrue(mapping.containsKey("CS"));
   }
@@ -57,7 +58,7 @@ public class MyFileDatabaseUnitTests {
     database.saveContentsToFile();
     // Re-create the database to verify saved contents
     MyFileDatabase newDatabase = new MyFileDatabase(0, "./data.txt");
-    HashMap<String, Department> mapping = newDatabase.getDepartmentMapping();
+    Map<String, Department> mapping = newDatabase.getDepartmentMapping();
     assertNotNull(mapping);
     assertTrue(mapping.containsKey("CS"));
   }

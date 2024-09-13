@@ -84,7 +84,7 @@ public class RouteControllerUnitTests {
     ResponseEntity<?> response = routeController.isCourseFull("IEOR", 4106);
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(false, response.getBody());
+    assertEquals(true, response.getBody());
   }
 
   @Test
@@ -92,7 +92,7 @@ public class RouteControllerUnitTests {
     ResponseEntity<?> response = routeController.isCourseFull("IEOR", 4102);
 
     assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(true, response.getBody());
+    assertEquals(false, response.getBody());
   }
 
   @Test
