@@ -85,13 +85,13 @@ public class CourseUnitTests {
   @Test
   public void isCourseFullTestWhenNotFull() {
     testCourse.setEnrolledStudentCount(200);
-    assertTrue(testCourse.isCourseFull()); // The course should not be full
+    assertFalse(testCourse.isCourseFull()); // The course should not be full
   }
 
   @Test
   public void isCourseFullTestWhenFull() {
     testCourse.setEnrolledStudentCount(250);
-    assertFalse(testCourse.isCourseFull()); // The course should be full
+    assertTrue(testCourse.isCourseFull()); // The course should be full
   }
 
 

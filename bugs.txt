@@ -75,6 +75,7 @@ A. Course class:
 2. getCourseLocation: return field was wrong, fixed.
 3. getInstructorName: return field was wrong, fixed.
 4. dropStudent: added check capacity to see if the student count is 0.
+5. isCourseFull: was implemented as "isCourseEnroll-able", changed the condition so that it represents full/not full
 
 B. Department class:
 1. getNumberOfMajors: return value was negative, fixed.
